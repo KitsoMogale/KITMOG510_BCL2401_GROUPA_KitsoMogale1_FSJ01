@@ -1,21 +1,24 @@
 import React from 'react'
+import ProductList from '../components/ProductList';
 
-export default function page() {
+export default async function page({params}) {
 
   const getProducts = async (id)=>{
 
     let skip = 20*id;
-
-    console.log(id)
         
     const res = await fetch('https://next-ecommerce-api.vercel.app/products/?skip='+`${skip}`);
 
     const data = await res.json();
 
-
+     return data
   }
+
+  const data = await getProducts(params.number);
   return (
-    <div>page</div>
+    <>
+    <ProductList data={data} number={params.number}/>
+    </>
   )
 }
 
