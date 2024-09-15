@@ -24,6 +24,11 @@ export default function ProductDetails({ params }) {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+            <div className="mt-6">
+        <Link href="/">
+          <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">Back to Products</button>
+        </Link>
+      </div>
       {/* Product Gallery */}
       <div className="flex flex-col lg:flex-row lg:space-x-6">
         <div className="lg:w-1/2">
@@ -108,12 +113,6 @@ export default function ProductDetails({ params }) {
             </div>
           )}
         </div>
-      </div>
-
-      <div className="mt-6">
-        <Link href="/">
-          <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">Back to Products</button>
-        </Link>
       </div>
     </div>
   );
