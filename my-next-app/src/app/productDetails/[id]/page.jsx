@@ -1,36 +1,3 @@
-// 'use client'
-// import React from 'react'
-// import { useState, useEffect } from "react";
-
-
-// export default function productDetails({params}) {
-
-//     const [products, setProducts] = useState(null);
-
-//     useEffect(() => {
-//       async function fetchProducts() {
-//         try {
-//           const res = await fetch(`https://next-ecommerce-api.vercel.app/products/${params.id}`);
-//           const data = await res.json();
-//           setProducts(data);
-//         } catch (error) {
-//           console.error("Failed to fetch products:", error);
-//         }
-//       }
-//        if(props.data){
-//           setProducts(props.data)
-//        }
-//        else{
-//           fetchProducts();
-//        }
-     
-//     }, []);
-//   return (
-//     <div>page</div>
-//   )
-// }
-
-
 
 'use client';
 import React, { useState, useEffect } from "react";
