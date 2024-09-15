@@ -35,20 +35,20 @@ export default function ProductList(props) {
 
   return (
     <>
-      <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>
       
-      <div class="flex  mt-4">
+      <div className="flex  mt-4">
         {/* Conditional rendering of buttons */}
         {props.number !== 0 && (
-          <button class="bg-gray-800 m-2 text-white px-4 py-2 rounded">
+          <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">
             <Link href={`${previous}`}>Previous</Link>
           </button>
         )}
-        <button class="bg-gray-800 m-2 text-white px-4 py-2 rounded">
+        <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">
           <Link href={`${next}`}>Next</Link>
         </button>
       </div>
