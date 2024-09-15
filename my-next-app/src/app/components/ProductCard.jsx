@@ -1,5 +1,4 @@
 'use client'
-import { redirect } from 'next/navigation'
 import React from 'react'
 import Link from "next/link";
 
@@ -29,8 +28,8 @@ export default function ProductCard(props) {
    
     <div className="mt-3 flex justify-between items-center">
       <div>
-        <span className="text-lg font-bold text-gray-800">{props.product.price}</span>
-        <span className="text-sm text-gray-500 line-through ml-2">{(props.product.price * (100 + props.product.discountPercentage) / 100).toFixed(2)}</span>
+        <span className="text-lg font-bold text-gray-800">R{props.product.price}</span>
+        <span className="text-sm text-gray-500 line-through ml-2">R{(props.product.price * (100 + props.product.discountPercentage) / 100).toFixed(2)}</span>
       </div>
       <span className="text-sm font-bold text-green-500">{props.product.stock} in stock</span>
     </div>

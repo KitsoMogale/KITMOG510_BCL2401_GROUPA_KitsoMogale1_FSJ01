@@ -64,7 +64,7 @@ export default function ProductDetails({ params }) {
 
           <div className="flex items-center mb-4">
             <span className="text-xl font-semibold text-gray-800">${product.price}</span>
-            <span className="text-sm text-gray-500 ml-4">{product.category}</span>
+            <span className="text-sm text-gray-500 ml-4 text-blue-600">{product.category}</span>
           </div>
 
           <div className="flex items-center mb-4">
@@ -76,7 +76,7 @@ export default function ProductDetails({ params }) {
           </div>
 
           <div className="text-sm text-gray-500 mb-4">
-            <span className="font-bold">Stock:</span> {product.stock}
+            <span className="font-bold text-green-500">Stock:</span> {product.stock}
           </div>
 
           <div className="mb-6">
