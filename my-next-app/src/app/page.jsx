@@ -9,12 +9,7 @@ export default function Home() {
     <>
     <Header/>
     <div className="p-12">
-       
-
-      {/* Use Suspense to render async components */}
-      <Suspense fallback={<p>Loading products...</p>}>
         <ProductList  number={0} />
-      </Suspense>
     </div>
     </>
   );

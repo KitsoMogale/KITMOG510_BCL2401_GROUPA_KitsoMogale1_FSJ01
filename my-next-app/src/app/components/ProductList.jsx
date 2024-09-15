@@ -30,7 +30,17 @@ export default function ProductList(props) {
   let previous = props.number==1?'/':Number(props.number)-1;
 
   if (!products) {
-    return <p>Loading...</p>;
+    return (
+        <>
+        
+        <div className="flex items-center justify-center min-h-screen">
+        <b>Loading...</b>
+  <div className="w-12 h-12 border-4 border-t-2 border-gray-800 border-solid rounded-full animate-spin"></div>
+</div>
+
+   
+    </>
+    );
   }
 
   return (
