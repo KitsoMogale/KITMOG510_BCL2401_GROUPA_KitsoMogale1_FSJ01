@@ -1,5 +1,5 @@
 'use client'
-import { createContext,useContext } from "react"
+import { createContext } from "react"
 import { useState } from "react";
 
 
@@ -7,10 +7,10 @@ import { useState } from "react";
 export const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
-    const [state, setState] = useState("");
+    const [search, setSearch] = useState("");
   
     return (
-      <SearchContext.Provider value={{ state, setState }}>
+      <SearchContext.Provider value={{ search, setSearch }}>
         {children}
       </SearchContext.Provider>
     );

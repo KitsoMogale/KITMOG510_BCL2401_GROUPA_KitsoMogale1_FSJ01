@@ -4,13 +4,10 @@ import Link from "next/link";
 import FetchProducts from "./FetchProducts";
 
 export default async function ProductList(props) {
-
-
-
   const getProducts = async ()=>{
 
         
-    const res = await fetch('https://next-ecommerce-api.vercel.app/products?search=');
+    const res = await fetch(`https://next-ecommerce-api.vercel.app/products`);
 
     const data = await res.json();
 
