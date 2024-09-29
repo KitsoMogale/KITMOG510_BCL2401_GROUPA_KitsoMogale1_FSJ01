@@ -1,33 +1,23 @@
-"use client";  // Client component
 
-import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import Link from "next/link"; 
+import FetchProducts from "./FetchProducts";
 
-export default function ProductList(props) {
-  const [products, setProducts] = useState(null);
+export default async function ProductList(props) {
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const res = await fetch('https://next-ecommerce-api.vercel.app/products');
-        const data = await res.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-      }
-    }
-     if(props.data){
-        setProducts(props.data)
-     }
-     else{
-        fetchProducts();
-     }
-   
-  }, []);
 
-  let next = props.number?Number(props.number)+1:1;
-  let previous = props.number==1?'/':Number(props.number)-1;
+
+  const getProducts = async ()=>{
+
+        
+    const res = await fetch('https://next-ecommerce-api.vercel.app/products');
+
+    const data = await res.json();
+
+     return data
+  }
+
+  const products = props.data?props.data: await getProducts();
 
   if (!products) {
     return (
@@ -50,18 +40,8 @@ export default function ProductList(props) {
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>
-      
-      <div className="flex  mt-4">
-        {/* Conditional rendering of buttons */}
-        {props.number !== 0 && (
-          <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">
-            <Link href={`${previous}`}>Previous</Link>
-          </button>
-        )}
-        <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">
-          <Link href={`${next}`}>Next</Link>
-        </button>
-      </div>
+      <FetchProducts number={props}/>
+
     </>
   );
 }

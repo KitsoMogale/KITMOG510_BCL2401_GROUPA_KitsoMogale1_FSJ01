@@ -7,7 +7,7 @@ import Header from "./components/Header";
 export default function Home() {
   return (
     <>
-    <Header/>
+    
     <div className="p-12">
         <ProductList  number={0} />
     </div>
