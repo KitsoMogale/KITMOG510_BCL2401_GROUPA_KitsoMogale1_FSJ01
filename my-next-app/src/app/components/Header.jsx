@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import {SearchBar} from './SearchProvider'
 
 export default function Header() {
   return (
@@ -26,13 +27,7 @@ export default function Header() {
         </nav>
 
         {/* Search Bar */}
-        <div className="relative flex-1 mx-4 max-w-md">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-full px-4 py-2 rounded-md border border-gray-700 bg-gray-900 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+      <SearchBar/>
 
         {/* Icons */}
         <div className="flex items-center space-x-4">
