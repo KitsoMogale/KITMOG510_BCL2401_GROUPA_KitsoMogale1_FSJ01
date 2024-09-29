@@ -3,17 +3,20 @@ import { useState } from "react"
 import { useContext } from 'react';
 import { SearchContext } from "./SearchProvider";
 import { useRouter } from 'next/navigation';
+import {FilterContext } from "./FilterProvider";
 
 export const SearchBar=()=>{
   const router = useRouter();
   const {search,setSearch} = useContext(SearchContext);
   const [title,setTitle] = useState('')
+  const {filter,setFilter} = useContext(FilterContext);
   
   const handleSearch = () => {
     setSearch(title);
           
           // Pushes a new path with query parameters to the URL
-          router.push(`/search?title=${encodeURIComponent(title)}`);
+         
+          router.push(`/search?title=${encodeURIComponent(title)}&category=${encodeURIComponent(filter)}`);
 
   };
 
