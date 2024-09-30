@@ -2,6 +2,7 @@
 'use client';
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import SortReviews from '../../components/SortReviews'
 
 export default function ProductDetails({ params }) {
   const [product, setProduct] = useState(null);
@@ -19,6 +20,9 @@ export default function ProductDetails({ params }) {
 
     fetchProducts();
   }, [params.id]);
+
+
+
 
   if (!product) return <div>Loading...</div>;
 
@@ -99,8 +103,8 @@ export default function ProductDetails({ params }) {
           {product.reviews && product.reviews.length > 0 && (
             <div className="mt-6">
               <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-              
-              {product.reviews.map((review, index) => (
+              <SortReviews reviews={product.reviews}/>
+              {/* {product.reviews.map((review, index) => (
                 <div key={index} className="border-b border-gray-300 pb-4 mb-4">
                   <p className="font-bold">{review.name}</p>
                   <p className="text-gray-600 text-sm mb-2">{review.date}</p>
@@ -110,7 +114,7 @@ export default function ProductDetails({ params }) {
                     {'☆'.repeat(5 - Math.round(review.rating))}
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           )}
         </div>
