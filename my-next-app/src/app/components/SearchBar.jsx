@@ -15,8 +15,14 @@ export const SearchBar=()=>{
     setSearch(title);
           
           // Pushes a new path with query parameters to the URL
-         
+         if(filter==''){
+          router.push(`/search?title=${encodeURIComponent(title)}`);
+
+         }
+         else{
           router.push(`/search?title=${encodeURIComponent(title)}&category=${encodeURIComponent(filter)}`);
+         }
+         
 
   };
 

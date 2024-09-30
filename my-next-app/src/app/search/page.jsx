@@ -5,18 +5,23 @@ import { useContext,useEffect,useState } from 'react';
 import { SearchContext } from "../components/SearchProvider";
 import {FilterContext } from "../components/FilterProvider";
 import ProductCard from '../components/ProductCard';
+import { useSearchParams } from 'next/navigation'
 import FetchProducts from '../components/FetchProducts';
 
 export default function page() {
 
-    const {search,setSearch} = useContext(SearchContext);
-    const {filter,setFilter} = useContext(FilterContext);
+    // const {search,setSearch} = useContext(SearchContext);
+    // const {filter,setFilter} = useContext(FilterContext);
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const searchParams = useSearchParams()
+ 
+    const search = searchParams.get('search')
+    const filter = searchParams.get('category')
+    
 
     useEffect(() => {
-        console.log('1234')
         const fetchProducts = async () => {
           setLoading(true);
           setError(null); // Reset error state
@@ -24,18 +29,16 @@ export default function page() {
        const queryParams = new URLSearchParams();
 
         // Add 'search' to query params if it's not empty
-       if (search !='' && search.trim()) {
+       if (search  && search.trim()) {
           queryParams.append('search', search.trim());
         }
 
         // Add 'category' to query params if it's not empty
-      if (filter !='' && filter.trim()) {
-         queryParams.append('filter', filter.trim());
+      if (filter && filter.trim()) {
+         queryParams.append('category', filter.trim());
          }
-         
      
           try {
-            console.log(filter,'123')
             const response = await fetch(`https://next-ecommerce-api.vercel.app/products?${queryParams.toString()}`);
             if (!response.ok) {
               throw new Error('Failed to fetch products');

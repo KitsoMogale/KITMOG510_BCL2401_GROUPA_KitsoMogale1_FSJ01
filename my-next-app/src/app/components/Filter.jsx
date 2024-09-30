@@ -49,7 +49,11 @@ export default function Filter() {
             setCat(e.target.value);setFilter(e.target.value);
            
                       // Pushes a new path with query parameters to the URL
-          router.push(`/search?title=${encodeURIComponent(search)}&category=${encodeURIComponent(e.target.value)}`);
+                      if(search==''){
+                        router.push(`/search?category=${encodeURIComponent(e.target.value)}`);
+                      }
+                      else{ router.push(`/search?title=${encodeURIComponent(search)}`);}
+         
         }}
           className=" px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
