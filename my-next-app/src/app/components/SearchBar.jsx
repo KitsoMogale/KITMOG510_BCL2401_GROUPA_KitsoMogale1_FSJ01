@@ -3,26 +3,39 @@ import { useState } from "react"
 import { useContext } from 'react';
 import { SearchContext } from "./SearchProvider";
 import { useRouter } from 'next/navigation';
-import {FilterContext } from "./FilterProvider";
+import {FilterContext, SortContext } from "./FilterProvider";
 
 export const SearchBar=()=>{
   const router = useRouter();
   const {search,setSearch} = useContext(SearchContext);
   const [title,setTitle] = useState('')
   const {filter,setFilter} = useContext(FilterContext);
+  const {sort,setSort}= useContext(SortContext);
   
   const handleSearch = () => {
     setSearch(title);
           
-          // Pushes a new path with query parameters to the URL
-         if(filter==''){
-          router.push(`/search?title=${encodeURIComponent(title)}`);
+ // Pushes a new path with query parameters to the URL
+let query = '/search?';
 
-         }
-         else{
-          router.push(`/search?title=${encodeURIComponent(title)}&category=${encodeURIComponent(filter)}`);
-         }
-         
+if (title !== '') {
+  query += `title=${encodeURIComponent(title)}&`;
+}
+
+if (filter !== '') {
+  query += `category=${encodeURIComponent(filter)}&`;
+}
+
+if (sort !== '') {
+  query += `order=${encodeURIComponent(sort)}`;
+}
+
+// Remove any trailing '&' or '?' if no parameters were appended
+query = query.replace(/[&?]$/, '');
+
+// Push the new query to the router
+router.push(query);
+  
 
   };
 

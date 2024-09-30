@@ -99,6 +99,7 @@ export default function ProductDetails({ params }) {
           {product.reviews && product.reviews.length > 0 && (
             <div className="mt-6">
               <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+              
               {product.reviews.map((review, index) => (
                 <div key={index} className="border-b border-gray-300 pb-4 mb-4">
                   <p className="font-bold">{review.name}</p>

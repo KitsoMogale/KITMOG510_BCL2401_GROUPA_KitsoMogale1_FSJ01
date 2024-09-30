@@ -2,8 +2,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
 import { SearchProvider } from "./components/SearchProvider";
-import { FilterProvider } from "./components/FilterProvider";
+import { FilterProvider, SortProvider } from "./components/FilterProvider";
 import Filter from "./components/Filter";
+import Sort from "./components/Sort";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,11 +16,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
        <SearchProvider>
         <FilterProvider>
+          <SortProvider>
       <body>
       <Header/>
+      <div className="flex">
       <Filter/>
+      <Sort className='m-2'/>
+      </div>
         {children}
       </body>
+      </SortProvider>
       </FilterProvider>
       </SearchProvider>
     </html>

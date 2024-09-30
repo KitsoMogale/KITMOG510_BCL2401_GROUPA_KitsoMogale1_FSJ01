@@ -2,16 +2,18 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import { useContext } from 'react';
-import {FilterContext } from "./FilterProvider";
+import {FilterContext, SortContext } from "./FilterProvider";
 import { SearchContext } from "./SearchProvider";
 import { useRouter } from 'next/navigation';
 
 export default function Filter() {
+
     const [category, setCategory] = useState([]);
     const [cat,setCat] = useState('')
     const [error, setError] = useState(null);
     const {filter,setFilter} = useContext(FilterContext);
     const {search,setSearch} = useContext(SearchContext);
+    const {sort,setSort}= useContext(SortContext);
     const router = useRouter();
 
     useEffect(() => {
@@ -47,13 +49,25 @@ export default function Filter() {
           value={cat}
           onChange={(e) => {
             setCat(e.target.value);setFilter(e.target.value);
-           
-                      // Pushes a new path with query parameters to the URL
-                      if(search==''){
-                        router.push(`/search?category=${encodeURIComponent(e.target.value)}`);
-                      }
-                      else{ router.push(`/search?title=${encodeURIComponent(search)}`);}
-         
+// Pushes a new path with query parameters to the URL
+let query = '/search?';
+
+if (search !== '') {
+  query += `title=${encodeURIComponent(search)}&`;
+}
+
+query += `category=${encodeURIComponent(e.target.value)}&`; // category is always present since it's from e.target.value
+
+if (sort !== '') {
+  query += `order=${encodeURIComponent(sort)}`;
+}
+
+// Remove any trailing '&' or '?' if no parameters were appended
+query = query.replace(/[&?]$/, '');
+
+// Push the new query to the router
+router.push(query);
+
         }}
           className=" px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
