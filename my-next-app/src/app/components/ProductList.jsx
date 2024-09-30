@@ -7,7 +7,11 @@ export default async function ProductList(props) {
   const getProducts = async ()=>{
 
         
-    const res = await fetch(`https://next-ecommerce-api.vercel.app/products`);
+    const res = await fetch(`https://next-ecommerce-api.vercel.app/products`, {
+      headers: {
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
+      }
+    });
 
     const data = await res.json();
 

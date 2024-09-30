@@ -9,6 +9,7 @@ export default function Home() {
     <>
     
     <div className="p-12">
+    
         <ProductList  number={0} />
     </div>
     </>
