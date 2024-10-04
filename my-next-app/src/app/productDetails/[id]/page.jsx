@@ -1,4 +1,3 @@
-
 'use client';
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -10,7 +9,7 @@ export default function ProductDetails({ params }) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch(`https://next-ecommerce-api.vercel.app/products/${params.id}`);
+        const res = await fetch(`http://localhost:3000/api/products/${params.id}`);
         const data = await res.json();
         setProduct(data);
       } catch (error) {
@@ -20,8 +19,6 @@ export default function ProductDetails({ params }) {
 
     fetchProducts();
   }, [params.id]);
-
-
 
 
   if (!product) return <div>Loading...</div>;

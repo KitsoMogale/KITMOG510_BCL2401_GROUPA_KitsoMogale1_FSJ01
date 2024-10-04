@@ -1,13 +1,11 @@
-
 import ProductCard from "./ProductCard";
-import Link from "next/link"; 
 import FetchProducts from "./FetchProducts";
 
 export default async function ProductList(props) {
   const getProducts = async ()=>{
 
         
-    const res = await fetch(`https://next-ecommerce-api.vercel.app/products`, {
+    const res = await fetch(`http://localhost:3000/api/products`, {
       headers: {
         'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
       }
@@ -19,17 +17,6 @@ export default async function ProductList(props) {
   }
 
   const products = props.data?props.data: await getProducts();
-
-  // if (!products) {
-    // return (
-    //     <>
-        
-  
-
-   
-  //   </>
-  //   );
-  // }
 
   return (
     <>
