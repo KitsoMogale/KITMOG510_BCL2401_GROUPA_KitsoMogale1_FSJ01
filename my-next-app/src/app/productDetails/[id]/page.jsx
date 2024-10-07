@@ -9,7 +9,7 @@ export default function ProductDetails({ params }) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch(`http://localhost:3000/api/products/${params.id}`);
+        const res = await fetch(`http://localhost:3000/api/productdetails/${params.id}`);
         const data = await res.json();
         setProduct(data);
       } catch (error) {

@@ -11,15 +11,17 @@ export async function GET(req,res,{params}) {
 
    id = id.toString().padStart(3, "0");
      
-    let products = [];
+    let product;
     try{
-         const docRef = doc(db,'products',id)
+         const docRef = doc(db,'products',id);
+         getDocs(docRef)
+         .then(doc=>{product = doc.data()})
     }
     catch(e){
         console.log("Failed to load products",e);
 
     }
-     console.log(products)
-    return NextResponse.json({ products });
+     console.log(product)
+    return NextResponse.json({ product });
 
   }

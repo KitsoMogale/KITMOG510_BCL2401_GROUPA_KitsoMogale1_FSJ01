@@ -9,13 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "dotenv": "^16.4.5",
     "firebase": "^10.14.0",
     "firebase-admin": "^12.6.0",
-=======
-    "firebase": "^10.14.0",
->>>>>>> 588a3fc35e2ecbbb30999c55f4da73e32cb81575
     "next": "14.2.9",
     "react": "^18",
     "react-dom": "^18"
