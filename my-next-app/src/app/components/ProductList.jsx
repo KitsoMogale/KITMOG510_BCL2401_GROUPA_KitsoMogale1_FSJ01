@@ -3,7 +3,7 @@ import FetchProducts from "./FetchProducts";
 
 export default async function ProductList(props) {
   const getProducts = async ()=>{
-    console.log('123456789a');
+    // console.log('123456789a');
     let data;
     try {
       const res = await fetch(`http://localhost:3000/api/products`);

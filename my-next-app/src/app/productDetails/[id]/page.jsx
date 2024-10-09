@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import SortReviews from '../../components/SortReviews'
+import WithAuth from "@/app/components/WithAuth";
+import ReviewForm from "@/app/components/Review";
 
-export default function ProductDetails({ params }) {
+ function ProductDetails({ params }) {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -20,6 +22,11 @@ export default function ProductDetails({ params }) {
 
     fetchProducts();
   }, [params.id]);
+
+
+  useEffect(()=>{
+
+  },[])
 
 
   if (!product) return <div>Loading...</div>;
@@ -116,8 +123,10 @@ export default function ProductDetails({ params }) {
             </div>
           )}
         </div>
+        <ReviewForm/>
       </div>
     </div>
   );
 }
 
+export default WithAuth(ProductDetails)

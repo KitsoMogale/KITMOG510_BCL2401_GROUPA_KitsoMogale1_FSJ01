@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 const db = getFirestore(app);
 
 export async function GET(req, res) {
-  console.log('cate 123');
+//   console.log('cate 123');
   try {
     // Reference the single document in the 'categories' collection
     const categoryDocRef = doc(db, 'categories', 'allCategories'); // Replace 'yourDocumentId' with the actual ID
