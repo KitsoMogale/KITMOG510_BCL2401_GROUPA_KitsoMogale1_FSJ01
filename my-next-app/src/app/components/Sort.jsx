@@ -47,8 +47,9 @@ export default function Sort() {
             }}
               className=" px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="asc">Default</option>
+              <option value="">Default</option>
               <option value="desc">Descending</option>
+              <option value="asc">Acsending</option>
             </select>
           </div>
         </div>

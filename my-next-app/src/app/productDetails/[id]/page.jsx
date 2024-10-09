@@ -11,6 +11,7 @@ export default function ProductDetails({ params }) {
       try {
         const res = await fetch(`http://localhost:3000/api/productdetails/${params.id}`);
         const data = await res.json();
+        console.log(data)
         setProduct(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);

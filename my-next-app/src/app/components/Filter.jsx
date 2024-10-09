@@ -21,11 +21,12 @@ export default function Filter() {
           setError(null); // Reset error state
     
           try {
-            const response = await fetch(`https://next-ecommerce-api.vercel.app/categories`);
+            const response = await fetch(`http://localhost:3000/api/categories`);
             if (!response.ok) {
               throw new Error('Failed to fetch Categories');
             }
             const data = await response.json();
+            // console.log(data)
             setCategory(data);
           } catch (err) {
             setError(err.message);

@@ -11,7 +11,7 @@ export default function page() {
     const [error, setError] = useState(null);
     const searchParams = useSearchParams()
  
-    const search = searchParams.get('search');
+    const search = searchParams.get('title');
     const filter = searchParams.get('category');
     const sort = searchParams.get('order');
 
@@ -24,6 +24,7 @@ export default function page() {
 
         // Add 'search' to query params if it's not empty
        if (search  && search.trim()) {
+        console.log(search);
           queryParams.append('search', search.trim());
         }
 
@@ -38,11 +39,13 @@ export default function page() {
         }
           try {
             const response = await fetch(`http://localhost:3000/api/products?${queryParams.toString()}`);
+            // console.log(response)
             if (!response.ok) {
               throw new Error('Failed to fetch products');
             }
             const data = await response.json();
-            setProducts(data);
+            // console.log(data.products[0])
+            setProducts(data.products);
           } catch (err) {
             setError(err.message);
           } finally {
@@ -60,7 +63,7 @@ export default function page() {
     <>
      <div className="p-12">
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {products.length>0&&products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>

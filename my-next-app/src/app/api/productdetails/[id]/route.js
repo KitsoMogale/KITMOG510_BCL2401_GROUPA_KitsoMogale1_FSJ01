@@ -1,27 +1,33 @@
-import { getFirestore, collection, getDocs,doc } from "firebase/firestore";
-import app from "@/app/firebaseConfig";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import app from "../../../firebaseConfig";
 import { NextResponse } from "next/server";
 
 const db = getFirestore(app);
 
+export async function GET(req, { params }) {
+  let id = params.id;
+  console.log(id, 'id');
 
-export async function GET(req,res,{params}) {
+  try {
+    // Correctly referencing the document by 'products' collection and id
+    const docRef = doc(db, 'products', `00${id}`); // Firestore ids are strings
 
-    const id = params.id
-
-   id = id.toString().padStart(3, "0");
-     
-    let product;
-    try{
-         const docRef = doc(db,'products',id);
-         getDocs(docRef)
-         .then(doc=>{product = doc.data()})
+    // Fetching the document using getDoc (not getDocs)
+    const productSnap = await getDoc(docRef);
+    console.log('pkbgxcfgh')
+    if (productSnap.exists()) {
+        console.log('okasambe')
+      // If the document exists, prepare the product data
+      const product = { id: productSnap.id, ...productSnap.data() };
+      console.log(product,'1234567890poiuyvvcdsw')
+      return NextResponse.json(product);
+    } else {
+      // If no document is found
+      return NextResponse.json({ message: "Product not found" }, { status: 404 });
     }
-    catch(e){
-        console.log("Failed to load products",e);
-
-    }
-     console.log(product)
-    return NextResponse.json({ product });
-
+  } catch (e) {
+    console.log("Failed to load product", e);
+    return NextResponse.json({ message: "Failed to load product" }, { status: 500 });
   }
+}
+

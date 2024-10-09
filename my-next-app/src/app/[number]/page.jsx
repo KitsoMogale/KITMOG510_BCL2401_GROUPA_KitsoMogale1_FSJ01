@@ -7,7 +7,7 @@ export default async function page({params}) {
 
     let skip = 20*id;
         
-    const res = await fetch('https://next-ecommerce-api.vercel.app/products/?skip='+`${skip}`);
+    const res = await fetch('http://localhost:3000/products/?lastVisible=00'+`${skip}`);
 
     const data = await res.json();
 

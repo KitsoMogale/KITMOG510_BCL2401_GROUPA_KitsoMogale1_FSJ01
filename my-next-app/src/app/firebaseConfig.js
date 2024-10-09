@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: "nextjs-bd723.firebaseapp.com",
-    projectId: "nextjs-bd723",
-    storageBucket: "nextjs-bd723.appspot.com",
-    messagingSenderId: "295469364472",
-    appId: "1:295469364472:web:6fdf2176588eecea2c370d"
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
   };
 
 const app = initializeApp(firebaseConfig);
-console.log(app)
+// console.log(app)
 
 export default app;
