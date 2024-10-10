@@ -7,13 +7,20 @@ import ReviewForm from "@/app/components/Review";
 
  function ProductDetails({ params }) {
   const [product, setProduct] = useState(null);
+  const [refetch,setRefetch] = useState()
+
+
+  const reload=()=>{
+    const arr = new Array;
+      setRefetch(arr);
+  }
 
   useEffect(() => {
     async function fetchProducts() {
       try {
         const res = await fetch(`http://localhost:3000/api/productdetails/${params.id}`);
         const data = await res.json();
-        console.log(data)
+        //console.log(data)
         setProduct(data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -21,18 +28,14 @@ import ReviewForm from "@/app/components/Review";
     }
 
     fetchProducts();
-  }, [params.id]);
-
-
-  useEffect(()=>{
-
-  },[])
+  }, [params.id,refetch]);
 
 
   if (!product) return <div>Loading...</div>;
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      
             <div className="mt-6">
         <Link href="/">
           <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">Back to Products</button>
@@ -123,7 +126,7 @@ import ReviewForm from "@/app/components/Review";
             </div>
           )}
         </div>
-        <ReviewForm/>
+        <ReviewForm id={params.id} reload={reload}/>
       </div>
     </div>
   );

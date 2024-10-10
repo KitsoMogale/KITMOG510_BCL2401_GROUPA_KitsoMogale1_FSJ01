@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ReviewsComponent = ({ reviews }) => {
   const [sortedReviews, setSortedReviews] = useState(reviews);
@@ -25,6 +25,24 @@ const ReviewsComponent = ({ reviews }) => {
     setSortedReviews(sortedArray);
   };
 
+  useEffect(()=>{
+
+    const sortedArray = [...reviews].sort((a, b) => {
+      if (sortType === 'dateNewest') {
+        return new Date(b.date) - new Date(a.date); // Sort by newest date
+      } else if (sortType === 'dateOldest') {
+        return new Date(a.date) - new Date(b.date); // Sort by oldest date
+      } else if (sortType === 'ratingHighest') {
+        return b.rating - a.rating; // Sort by highest rating
+      } else if (sortType === 'ratingLowest') {
+        return a.rating - b.rating; // Sort by lowest rating
+      }
+    });
+
+    setSortedReviews(sortedArray);
+
+  },[reviews])
+
   return (
     <div className="p-4">
       {/* Sort Dropdown */}
@@ -46,13 +64,15 @@ const ReviewsComponent = ({ reviews }) => {
       <ul className="space-y-4">
         {sortedReviews.map((review, index) => (
                 <div key={index} className="border-b border-gray-300 pb-4 mb-4">
-                <p className="font-bold">{review.name}</p>
+                <p className="font-bold">{review.reviewerName}</p>
                 <p className="text-gray-600 text-sm mb-2">{review.date}</p>
                 <p className="text-gray-800 mb-2">{review.comment}</p>
                 <div className="text-yellow-500">
                   {'★'.repeat(Math.round(review.rating))}
                   {'☆'.repeat(5 - Math.round(review.rating))}
+                  <button className="bg-red-800 text-white px-4 relative left-[80%] py-2 rounded">Delete</button>
                 </div>
+                
               </div>
         ))}
       </ul>

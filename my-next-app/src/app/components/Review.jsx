@@ -1,19 +1,25 @@
 'use client'
 import { useState } from 'react';
 
-function ReviewForm() {
+function ReviewForm(props) {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(5);  // Default rating set to 5
-  const [timePosted, setTimePosted] = useState('');
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    const docId = props.id
     // Set time of the post in handleSubmit
     const currentTime = new Date().toLocaleString();
-    setTimePosted(currentTime);
     
     console.log({ comment, rating, timePosted: currentTime });
+    const res = await fetch(`http://localhost:3000/api/addReviews`, {method: 'POST', headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },body: JSON.stringify({docId,comment,rating,date:currentTime}), })
+    // console.log(res);
+    const data = await res.json();
+    props.reload();
     // Handle form submission (e.g., send review data to the server)
   };
 
@@ -56,7 +62,6 @@ function ReviewForm() {
           <option value={5}>5 - Excellent</option>
         </select>
       </div>
-
       {/* Time of Post - this will be set automatically in handleSubmit */}
       <div className="text-right">
           <button
@@ -68,7 +73,6 @@ function ReviewForm() {
         </div>
 
     </form>
-
         </>
   );
 }

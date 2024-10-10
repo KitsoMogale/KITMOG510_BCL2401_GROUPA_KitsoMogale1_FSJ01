@@ -19,7 +19,7 @@ export async function GET(req, { params }) {
         console.log('okasambe')
       // If the document exists, prepare the product data
       const product = { id: productSnap.id, ...productSnap.data() };
-      console.log(product,'1234567890poiuyvvcdsw')
+      // console.log(product,'1234567890poiuyvvcdsw')
       return NextResponse.json(product);
     } else {
       // If no document is found

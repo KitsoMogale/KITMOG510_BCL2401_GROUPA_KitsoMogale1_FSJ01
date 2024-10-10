@@ -1,32 +1,30 @@
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import app from "../../../firebaseConfig";
-import { NextResponse } from "next/server";
+import app from '../../firebaseConfig'; // Import Firestore instance
+import { doc, updateDoc, arrayUnion,getFirestore } from 'firebase/firestore';
+import { NextResponse } from 'next/server';
 
 const db = getFirestore(app);
-
-export async function GET(req, { params }) {
-  let id = params.id;
-  console.log(id, 'id');
-
+export async function POST(req) {
+    console.log('123post')
   try {
-    // Correctly referencing the document by 'products' collection and id
-    const docRef = doc(db, 'products', `00${id}`); // Firestore ids are strings
+    console.log('start')
+    const body = await req.json(); // Parse request body
+    const { docId,comment,rating,date } = body; // Extract docId and the new review data
 
-    // Fetching the document using getDoc (not getDocs)
-    const productSnap = await getDoc(docRef);
-    console.log('pkbgxcfgh')
-    if (productSnap.exists()) {
-        console.log('okasambe')
-      // If the document exists, prepare the product data
-      const product = { id: productSnap.id, ...productSnap.data() };
-      console.log(product,'1234567890poiuyvvcdsw')
-      return NextResponse.json(product);
-    } else {
-      // If no document is found
-      return NextResponse.json({ message: "Product not found" }, { status: 404 });
+    if (!docId || !comment) {
+      return NextResponse.json({ error: 'Missing document ID or review' }, { status: 400 });
     }
-  } catch (e) {
-    console.log("Failed to load product", e);
-    return NextResponse.json({ message: "Failed to load product" }, { status: 500 });
+
+    // Get a reference to the document
+    const docRef = doc(db, 'products', `00${docId}`);
+
+    // Update the 'reviews' field by adding the new review to the existing array
+    await updateDoc(docRef, {
+      reviews: arrayUnion({comment,rating,date}), // Adds the new review to the array, preserving existing reviews
+    });
+
+    return NextResponse.json({ message: 'Review added successfully' });
+  } catch (error) {
+    console.error('Error adding review:', error);
+    return NextResponse.json({ error: 'Failed to add review' }, { status: 500 });
   }
 }
