@@ -6,7 +6,7 @@ export default async function ProductList(props) {
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`http://localhost:3000/api/products`);
+      const res = await fetch(`https://vercel.live/link/kitmog-510-bcl-2401-groupa-kitso-mogale1-fsj-01-tdha-zhquklmc9.vercel.app?via=deployment-domains-list&p=1/api/products`);
       
       // Check if the response is OK (status 200-299)
       // console.log(res)
