@@ -2,7 +2,9 @@
 import React from 'react'
 import { useEffect,useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
+import Filter from '../components/Filter';
+import Sort from '../components/Sort';
 
 export default function page() {
 
@@ -62,6 +64,10 @@ export default function page() {
   return (
     <>
      <div className="p-12">
+     <div className="flex">
+      <Filter/>
+      <Sort className='m-2'/>
+      </div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.length>0&&products.map((product) => (
           <ProductCard key={product.id} product={product} />

@@ -8,7 +8,7 @@ export async function POST(req) {
   try {
     console.log('start')
     const body = await req.json(); // Parse request body
-    const { docId,comment,rating,date } = body; // Extract docId and the new review data
+    const { docId,comment,rating,date,reviewerName } = body; // Extract docId and the new review data
 
     if (!docId || !comment) {
       return NextResponse.json({ error: 'Missing document ID or review' }, { status: 400 });
@@ -19,7 +19,7 @@ export async function POST(req) {
 
     // Update the 'reviews' field by adding the new review to the existing array
     await updateDoc(docRef, {
-      reviews: arrayUnion({comment,rating,date}), // Adds the new review to the array, preserving existing reviews
+      reviews: arrayUnion({comment,rating,date,reviewerName }), // Adds the new review to the array, preserving existing reviews
     });
 
     return NextResponse.json({ message: 'Review added successfully' });

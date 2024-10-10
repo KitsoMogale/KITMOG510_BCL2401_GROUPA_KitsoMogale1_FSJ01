@@ -55,10 +55,6 @@ export default function RootLayout({ children }) {
         <FilterProvider>
           <SortProvider>
       <Header/>
-      <div className="flex">
-      <Filter/>
-      <Sort className='m-2'/>
-      </div>
         {children}
   
       </SortProvider>

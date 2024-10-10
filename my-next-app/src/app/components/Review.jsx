@@ -20,6 +20,7 @@ function ReviewForm(props) {
 
     
     console.log({ comment, rating, timePosted: currentTime,reviewerName:name, });
+    
     const res = await fetch(`http://localhost:3000/api/addReviews`, {method: 'POST', headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -33,7 +34,7 @@ function ReviewForm(props) {
   return (
     <>
     <h1  className='font-bold'>Add review:</h1>
-    <form onSubmit={handleSubmit} className="max-w-2xl mt-2 relative bottom-12 mx-auto p-6 bg-white shadow-md rounded-md">
+    <form onSubmit={handleSubmit} className="max-w-2xl h-fit mt-2 relative bottom-12 mx-auto p-6 bg-white shadow-md rounded-md">
       {/* Comment Section */}
       <div className="mb-4">
         <label htmlFor="comment" className="block text-gray-700 text-sm font-semibold mb-2">
