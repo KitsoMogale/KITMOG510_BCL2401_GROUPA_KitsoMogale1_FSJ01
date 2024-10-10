@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
 
-export default function page() {
+export default function Page() {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);

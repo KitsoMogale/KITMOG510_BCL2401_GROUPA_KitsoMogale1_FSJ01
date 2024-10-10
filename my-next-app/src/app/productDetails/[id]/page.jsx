@@ -121,4 +121,4 @@ import ReviewForm from "@/app/components/Review";
   );
 }
 
-export default WithAuth(ProductDetails)
+export default WithAuth(ProductDetails);

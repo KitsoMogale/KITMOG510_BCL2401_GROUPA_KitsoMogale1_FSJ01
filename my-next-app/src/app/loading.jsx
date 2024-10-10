@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function loading() {
+export default function Loading() {
 
     setTimeout(()=>console.log('123'),3000)
   return (
