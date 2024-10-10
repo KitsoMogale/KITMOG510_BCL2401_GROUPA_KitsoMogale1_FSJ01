@@ -20,7 +20,7 @@ const WithAuth = (Component) => {
       });
 
       return () => unsubscribe();
-    }, [router]);
+    }, [router,auth]);
 
     return <Component {...props} />;
   };
