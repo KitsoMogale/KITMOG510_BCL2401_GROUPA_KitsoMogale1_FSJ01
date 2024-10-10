@@ -7,9 +7,7 @@
 
 //     let skip = 20*id;
         
-//     const res = await fetch('http://localhost:3000/products/?lastVisible=00'+`${skip}`);
 
-//     const data = await res.json();
 
 //      return data
 //   }
@@ -19,7 +17,6 @@
 //     <div className="p-12">
 //     <ProductList data={data} number={params.number}/>
 //     </div>
-//   )
-// }
+// 
 
 
