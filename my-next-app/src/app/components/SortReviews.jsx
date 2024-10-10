@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 
-const ReviewsComponent = ({ reviews }) => {
+const ReviewsComponent = ({ reviews,id,reload }) => {
   const [sortedReviews, setSortedReviews] = useState(reviews);
   const [sortType, setSortType] = useState('dateNewest'); // Default sort by newest date
 
@@ -24,6 +24,19 @@ const ReviewsComponent = ({ reviews }) => {
 
     setSortedReviews(sortedArray);
   };
+
+  const deleteReview = async(review)=>{
+    console.log(review)
+    const res = await fetch(`http://localhost:3000/api/deleteReview/${id}`, {method: 'POST', headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },body: JSON.stringify({id,review}), });
+    console.log(res);
+    const data = res.json();
+    console.log(data);
+    reload();
+
+  }
 
   useEffect(()=>{
 
@@ -70,7 +83,7 @@ const ReviewsComponent = ({ reviews }) => {
                 <div className="text-yellow-500">
                   {'★'.repeat(Math.round(review.rating))}
                   {'☆'.repeat(5 - Math.round(review.rating))}
-                  <button className="bg-red-800 text-white px-4 relative left-[80%] py-2 rounded">Delete</button>
+                  <button onClick={()=>deleteReview(review)} className="bg-red-800 text-white px-4 relative left-[80%] py-2 rounded">Delete</button>
                 </div>
                 
               </div>

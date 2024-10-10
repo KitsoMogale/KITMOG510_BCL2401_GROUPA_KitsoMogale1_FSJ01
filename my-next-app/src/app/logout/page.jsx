@@ -8,6 +8,10 @@ function LogoutButton() {
   const handleLogout = async () => {
     await signOut(auth);
     console.log('User signed out');
+    if (typeof window !== "undefined") {
+        localStorage.removeItem('name');
+        localStorage.removeItem('surname');
+    }
   };
 
   return (

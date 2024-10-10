@@ -28,7 +28,7 @@ import ReviewForm from "@/app/components/Review";
     }
 
     fetchProducts();
-  }, [params.id,refetch]);
+  }, [refetch]);
 
 
   if (!product) return <div>Loading...</div>;
@@ -111,18 +111,7 @@ import ReviewForm from "@/app/components/Review";
           {product.reviews && product.reviews.length > 0 && (
             <div className="mt-6">
               <h2 className="text-2xl font-bold mb-4">Reviews</h2>
-              <SortReviews reviews={product.reviews}/>
-              {/* {product.reviews.map((review, index) => (
-                <div key={index} className="border-b border-gray-300 pb-4 mb-4">
-                  <p className="font-bold">{review.name}</p>
-                  <p className="text-gray-600 text-sm mb-2">{review.date}</p>
-                  <p className="text-gray-800 mb-2">{review.comment}</p>
-                  <div className="text-yellow-500">
-                    {'★'.repeat(Math.round(review.rating))}
-                    {'☆'.repeat(5 - Math.round(review.rating))}
-                  </div>
-                </div>
-              ))} */}
+              <SortReviews id={params.id} reviews={product.reviews} reload={reload}/>
             </div>
           )}
         </div>

@@ -1,22 +1,29 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ReviewForm(props) {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(5);  // Default rating set to 5
+  const [name,setName] = useState('')
   
-
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+            const fullname = `${localStorage.getItem('name')} ${localStorage.getItem('surname')}`
+            setName(fullname)
+        }
+    },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     const docId = props.id
     // Set time of the post in handleSubmit
     const currentTime = new Date().toLocaleString();
+
     
-    console.log({ comment, rating, timePosted: currentTime });
+    console.log({ comment, rating, timePosted: currentTime,reviewerName:name, });
     const res = await fetch(`http://localhost:3000/api/addReviews`, {method: 'POST', headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },body: JSON.stringify({docId,comment,rating,date:currentTime}), })
+      },body: JSON.stringify({docId,comment,rating,date:currentTime,reviewerName:name}), })
     // console.log(res);
     const data = await res.json();
     props.reload();

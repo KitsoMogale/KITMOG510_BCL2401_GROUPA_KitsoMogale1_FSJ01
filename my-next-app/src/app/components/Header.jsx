@@ -29,32 +29,7 @@ export default function Header() {
         {/* Search Bar */}
       <SearchBar/>
 
-        {/* Icons */}
-        <div className="flex items-center space-x-4">
-          <Link href="/">
-            <p className="relative">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l1.68 6.58a2 2 0 001.905 1.5H17.5a2 2 0 001.905-1.5L22 3h2m-3 14H8.5a2 2 0 01-1.905-1.5L4 5H2m0 0v2a2 2 0 002 2h.5m11 0h.5a2 2 0 002-2V5m-2 0v2m-1.5 10a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0m3 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0" />
-              </svg>
-            </p>
-          </Link>
-
-          {/* User Icon */}
-          <Link href="/">
-            <p>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-9m0 0l-9-9m9 9H3" />
-              </svg>
-            </p>
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button className="md:hidden flex items-center">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
+        <Link href='/logout' className='text-red-400'>Logout</Link>
       </div>
 
       {/* Mobile Navigation Menu */}
