@@ -15,7 +15,7 @@ export default function FetchProducts(props) {
         <Link href={`${previous}`}>Previous</Link>
       </button>
     )}
-    <button className="bg-gray-800 m-2 text-white px-4 py-2 rounded">
+    <button onClick={()=>console.log('1234click')} className="bg-gray-800 m-2 text-white px-4 py-2 rounded">
       <Link href={`${next}`}>Next</Link>
     </button>
   </div>

@@ -22,18 +22,20 @@ export async function GET(req, res) {
   const category = searchParams.get('category'); // Get the 'category' query param
   const search = searchParams.get('search');
   const sort = searchParams.get('order');
-  // const lastVisible = searchParams.get('lastVisible');
+  const lastVisible = searchParams.get('lastVisible');
+  console.log(lastVisible,'lastVisisble')
 
   try {
     const productsRef = db.collection('products');
     let q = productsRef;
 
-    // if (lastVisible) {
-    //   const lastVisibleDocRef = await db.doc(`products/${lastVisible}`).get();
-    //   if (lastVisibleDocRef.exists) {
-    //     q = q.startAfter(lastVisibleDocRef);
-    //   }
-    // }
+    if (lastVisible) {
+      const lastVisibleDocRef = await db.doc(`products/${lastVisible}`).get();
+      console.log(lastVisibleDocRef.exists)
+      if (lastVisibleDocRef.exists) {
+        q = q.startAfter(lastVisibleDocRef);
+      }
+    }
     // Apply search (e.g., by title or name)
     if (search && search.trim()) {
       q = q.where('title', '>=', search).where('title', '<=', search + '\uf8ff');
@@ -66,7 +68,7 @@ export async function GET(req, res) {
     console.log('slide123')
     // Get the last visible document for pagination
     // const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-      console.log(products)
+     //  console.log(products)
     return NextResponse.json(products);
   } catch (e) {
     console.error('Failed to load products', e);
