@@ -16,6 +16,7 @@ const db = admin.firestore();
 let products = [];
 
 export async function GET(req, res) {
+  console.log('slide1234')
   const { searchParams } = new URL(req.url);
 
   const category = searchParams.get('category'); // Get the 'category' query param
@@ -66,10 +67,10 @@ export async function GET(req, res) {
     // Get the last visible document for pagination
     // const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
       console.log(products)
-      res.status(200).json(products);
+    return NextResponse.json(products);
   } catch (e) {
     console.error('Failed to load products', e);
-    res.status(500).json({ error: 'Error fetching products' });
+    return NextResponse.json({ error: 'Error fetching products' }, { status: 500 });
   }
 }
 
