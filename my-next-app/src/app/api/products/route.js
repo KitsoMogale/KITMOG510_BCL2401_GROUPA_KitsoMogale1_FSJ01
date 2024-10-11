@@ -69,6 +69,7 @@ export async function GET(req, res) {
     // Get the last visible document for pagination
     // const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
      //  console.log(products)
+     products = JSON.parse(products)
     return NextResponse.json(products);
   } catch (e) {
     console.error('Failed to load products', e);
