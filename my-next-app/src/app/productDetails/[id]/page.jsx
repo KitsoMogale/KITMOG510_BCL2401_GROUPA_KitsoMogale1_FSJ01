@@ -18,7 +18,7 @@ import ReviewForm from "@/app/components/Review";
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch(`https://monumental-semifreddo-2509a8.netlify.app/api/productdetails/${params.id}`);
+        const res = await fetch(`http:localhost:3000/api/productdetails/${params.id}`);
         const data = await res.json();
         //console.log(data)
         setProduct(data);

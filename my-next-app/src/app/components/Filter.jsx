@@ -21,7 +21,7 @@ export default function Filter() {
           setError(null); // Reset error state
     
           try {
-            const response = await fetch(`https://monumental-semifreddo-2509a8.netlify.app/api/categories`);
+            const response = await fetch(`/api/categories`);
             if (!response.ok) {
               throw new Error('Failed to fetch Categories');
             }
