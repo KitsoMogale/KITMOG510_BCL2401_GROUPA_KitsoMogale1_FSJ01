@@ -12,7 +12,7 @@ export default async function Page({params}) {
         skip= `0${skip}`
     }
         
-    const res = await fetch('/api/products/?lastVisible=0'+`${skip}`,{cache:'no-store'});
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/?lastVisible=0${skip}`,{cache:'no-store'});
 
     const data = await res.json();
 
