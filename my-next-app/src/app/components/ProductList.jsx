@@ -6,7 +6,7 @@ export default async function ProductList(props) {
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`http:localhost:3000/api/products`,{cache:'no-store'});
+      const res = await fetch(`http:localhost:3000/api/products`);
       
       // Check if the response is OK (status 200-299)
       //console.log(res)
@@ -15,7 +15,7 @@ export default async function ProductList(props) {
       }
       
        data = await res.json();
-      //console.log(data[0], 'Fetched data successfully');
+      console.log(data.products[0], 'Fetched data successfully');
   } catch (error) {
       console.error('Failed to fetch products:', error);
   }
@@ -29,7 +29,7 @@ export default async function ProductList(props) {
   return (
     <div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {products.products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>
