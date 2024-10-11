@@ -62,14 +62,14 @@ export async function GET(req, res) {
       id: doc.id,
       ...doc.data(),
     }));
-
+    console.log('slide123')
     // Get the last visible document for pagination
     // const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-    return NextResponse.json( products);
+      console.log(products)
+      res.status(200).json(products);
   } catch (e) {
     console.error('Failed to load products', e);
-    return NextResponse.json({ error: 'Error fetching products' }, { status: 500 });
+    res.status(500).json({ error: 'Error fetching products' });
   }
 }
 
