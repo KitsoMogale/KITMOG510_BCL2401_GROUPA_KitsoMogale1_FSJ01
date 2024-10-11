@@ -42,7 +42,7 @@ export default function Search() {
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/products?${queryParams.toString()}`,{cache:'no-store'});
+                const response = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/products/api/products?${queryParams.toString()}`,{cache:'no-store'});
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }

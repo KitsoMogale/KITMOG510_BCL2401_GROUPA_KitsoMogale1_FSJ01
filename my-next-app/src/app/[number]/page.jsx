@@ -12,7 +12,7 @@ export default async function Page({params}) {
         skip= `0${skip}`
     }
         
-    const res = await fetch(`http://localhost:3000/api/products/?lastVisible=0${skip}`,{cache:'no-store'});
+    const res = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/products/?lastVisible=0${skip}`,{cache:'no-store'});
 
     const data = await res.json();
 
