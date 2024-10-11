@@ -39,7 +39,7 @@ export default function Search() {
                     throw new Error('Failed to fetch products');
                 }
                 const data = await response.json();
-                setProducts(data.products);
+                setProducts(data);
             } catch (err) {
                 setError(err.message);
             } finally {
