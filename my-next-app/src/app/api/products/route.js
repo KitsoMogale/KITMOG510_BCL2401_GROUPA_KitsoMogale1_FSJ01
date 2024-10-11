@@ -1,83 +1,67 @@
-import { getFirestore, collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
-import app from "../../firebaseConfig";
+import { getFirestore, collection, query, where, orderBy, startAfter, limit, getDocs, doc } from 'firebase/firestore';
+import app from "../../firebaseConfig"; // Import your Firebase config
 import { NextResponse } from "next/server";
-import admin from 'firebase-admin';
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SERVICE_ACCOUNT);
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`,
-  });
-}
-
-const db = admin.firestore();
-let products = [];
+// Initialize Firestore (client-side)
+const db = getFirestore(app);
 
 export async function GET(req, res) {
-  console.log('slide1234')
+  console.log('slide1234');
   const { searchParams } = new URL(req.url);
 
   const category = searchParams.get('category'); // Get the 'category' query param
   const search = searchParams.get('search');
   const sort = searchParams.get('order');
   const lastVisible = searchParams.get('lastVisible');
-  console.log(lastVisible,'lastVisisble')
+  console.log(lastVisible, 'lastVisible');
 
   try {
-    const productsRef = db.collection('products');
-    let q = productsRef;
+    const productsRef = collection(db, 'products');
+    let q = query(productsRef);
 
+    // Apply last visible document for pagination
     if (lastVisible) {
-      const lastVisibleDocRef = await db.doc(`products/${lastVisible}`).get();
-      console.log(lastVisibleDocRef.exists)
-      if (lastVisibleDocRef.exists) {
-        q = q.startAfter(lastVisibleDocRef);
+      const lastVisibleDocRef = doc(db, 'products', lastVisible);
+      const lastVisibleSnapshot = await getDocs(lastVisibleDocRef);
+      if (!lastVisibleSnapshot.empty) {
+        q = query(q, startAfter(lastVisibleSnapshot));
       }
     }
+
     // Apply search (e.g., by title or name)
     if (search && search.trim()) {
-      q = q.where('title', '>=', search).where('title', '<=', search + '\uf8ff');
+      q = query(q, where('title', '>=', search), where('title', '<=', search + '\uf8ff'));
     }
 
     // Apply filter (e.g., by category)
     if (category && category.trim()) {
-      q = q.where('category', '==', category);
+      q = query(q, where('category', '==', category));
     }
 
     // Apply sorting (e.g., by price or another field)
     if (sort && sort.trim()) {
-      q = q.orderBy('price', sort); // 'asc' or 'desc'
+      q = query(q, orderBy('price', sort)); // 'asc' or 'desc'
     }
 
-    // Make sure to include 'orderBy' for pagination (Firestore requires orderBy if using startAfter)
-    //q = q.orderBy('title'); // Adjust based on your ordering logic
-
     // Apply limit
-    q = q.limit(20);
+    q = query(q, limit(20));
 
     // Execute the query
-    const querySnapshot = await q.get();
+    const querySnapshot = await getDocs(q);
 
     // Map the results to an array of products
-    products = querySnapshot.docs.map((doc) => ({
+    const products = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
-    console.log('slide123')
-    // Get the last visible document for pagination
-    // const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-     //  console.log(products)
-     products = JSON.parse(products)
+    console.log('slide123');
+
     return NextResponse.json(products);
   } catch (e) {
     console.error('Failed to load products', e);
     return NextResponse.json({ error: 'Error fetching products' }, { status: 500 });
   }
 }
-
-
 
 
 
