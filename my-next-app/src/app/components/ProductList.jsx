@@ -15,7 +15,7 @@ export default async function ProductList(props) {
       }
       
        data = await res.json();
-      console.log(data.products[0], 'Fetched data successfully');
+      //console.log(data.products[0], 'Fetched data successfully');
   } catch (error) {
       console.error('Failed to fetch products:', error);
   }

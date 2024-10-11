@@ -1,4 +1,4 @@
-'use client'
+'use client';  // Mark the component as a client-side component
 import React, { Suspense, useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { useSearchParams } from 'next/navigation';
@@ -9,12 +9,20 @@ export default function Search() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const searchParams = useSearchParams();
+    const searchParams = useSearchParams(); // Safe to use on client
+    const [search, setSearch] = useState('');
+    const [filter, setFilter] = useState('');
+    const [sort, setSort] = useState('');
 
-    const search = searchParams.get('title');
-    const filter = searchParams.get('category');
-    const sort = searchParams.get('order');
-    console.log(search)
+    useEffect(() => {
+        // Only execute on the client side (Next.js ensures it here)
+        if (searchParams) {
+            setSearch(searchParams.get('title') || '');
+            setFilter(searchParams.get('category') || '');
+            setSort(searchParams.get('order') || '');
+        }
+    }, [searchParams]);
+
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
@@ -34,7 +42,7 @@ export default function Search() {
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/products?${queryParams.toString()}`);
+                const response = await fetch(`/api/products?${queryParams.toString()}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
@@ -48,7 +56,7 @@ export default function Search() {
         };
 
         fetchProducts();
-    }, [search, filter, sort]);
+    }, [search, filter, sort]); // Fetch products when search, filter, or sort change
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -61,7 +69,7 @@ export default function Search() {
                     <Sort className="m-2" />
                 </div>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {products.products.length > 0 && products.products.map((product) => (
+                    {products.length > 0 && products.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </ul>
