@@ -11,8 +11,9 @@ export default async function Page({params}) {
     if(skip<10){
         skip= `0${skip}`
     }
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
         
-    const res = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/products/?lastVisible=0${skip}`,{cache:'no-cache'});
+    const res = await fetch(`${apiUrl}/api/products/?lastVisible=0${skip}`,{cache:'no-cache'});
 
     const data = await res.json();
 

@@ -7,7 +7,7 @@ import { SearchContext } from "./SearchProvider";
 import { useRouter } from 'next/navigation';
 
 export default function Filter() {
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
     const [category, setCategory] = useState([]);
     const [cat,setCat] = useState('')
     const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ export default function Filter() {
           setError(null); // Reset error state
     
           try {
-            const response = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/categories`);
+            const response = await fetch(`${apiUrl}/api/categories`);
             if (!response.ok) {
               throw new Error('Failed to fetch Categories');
             }

@@ -40,9 +40,10 @@ export default function Search() {
             if (sort && sort.trim()) {
                 queryParams.append('order', sort.trim());
             }
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
             try {
-                const response = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/products/api/products?${queryParams.toString()}`,{cache:'no-cache'});
+                const response = await fetch(`${apiUrl}/api/products/api/products?${queryParams.toString()}`,{cache:'no-cache'});
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }

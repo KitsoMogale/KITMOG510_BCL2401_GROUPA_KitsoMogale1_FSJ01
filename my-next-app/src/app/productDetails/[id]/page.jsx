@@ -9,7 +9,7 @@ import ReviewForm from "@/app/components/Review";
   const [product, setProduct] = useState(null);
   const [refetch,setRefetch] = useState()
 
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
   const reload=()=>{
     const arr = new Array;
       setRefetch(arr);
@@ -18,7 +18,7 @@ import ReviewForm from "@/app/components/Review";
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/productdetails/${params.id}`);
+        const res = await fetch(`${apiUrl}/api/productdetails/${params.id}`);
         const data = await res.json();
         //console.log(data)
         setProduct(data);

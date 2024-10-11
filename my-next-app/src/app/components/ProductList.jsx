@@ -2,11 +2,12 @@ import ProductCard from "./ProductCard";
 import FetchProducts from "./FetchProducts";
 
 export default async function ProductList(props) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
   const getProducts = async ()=>{
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/products`,{cache:"no-cache"});
+      const res = await fetch(`${apiUrl}/api/products`,{cache:"no-cache"});
       
       // Check if the response is OK (status 200-299)
       console.log(res)
