@@ -42,7 +42,7 @@ export default function Search() {
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/products?${queryParams.toString()}`);
+                const response = await fetch(`http://localhost:3000/api/products?${queryParams.toString()}`,{cache:'no-store'});
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
