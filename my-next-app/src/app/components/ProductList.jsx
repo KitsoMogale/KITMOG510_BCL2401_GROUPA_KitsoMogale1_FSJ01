@@ -6,7 +6,7 @@ export default async function ProductList(props) {
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`/api/products`,{cache:"no-cache"});
+      const res = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/products`,{cache:"no-cache"});
       
       // Check if the response is OK (status 200-299)
       console.log(res)

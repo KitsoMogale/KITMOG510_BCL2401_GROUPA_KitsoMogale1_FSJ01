@@ -21,7 +21,7 @@ export default function Filter() {
           setError(null); // Reset error state
     
           try {
-            const response = await fetch(`/api/categories`);
+            const response = await fetch(`https://tranquil-cactus-a90f1e.netlify.app/api/categories`);
             if (!response.ok) {
               throw new Error('Failed to fetch Categories');
             }
