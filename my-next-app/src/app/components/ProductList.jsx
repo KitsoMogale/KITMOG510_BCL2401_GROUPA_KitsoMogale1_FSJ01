@@ -6,10 +6,10 @@ export default async function ProductList(props) {
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`/api/products`,{cache:"no-store"});
+      const res = await fetch(`/api/products`,{cache:"no-cache"});
       
       // Check if the response is OK (status 200-299)
-      //console.log(res)
+      console.log(res)
       if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
       }
