@@ -45,10 +45,10 @@ export async function GET(req, res) {
 
     // Apply limit
     q = query(q, limit(20));
-
+    console.log('limit')
     // Execute the query
     const querySnapshot = await getDocs(q);
-
+  console.log('ref')
     // Map the results to an array of products
     const products = querySnapshot.docs.map((doc) => ({
       id: doc.id,
