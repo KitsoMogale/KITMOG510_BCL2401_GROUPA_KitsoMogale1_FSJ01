@@ -62,7 +62,7 @@ export default function Search() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <Suspense fallback={<p>Loading search...</p>}>
+       
             <div className="p-12">
                 <div className="flex">
                     <Filter />
@@ -74,6 +74,5 @@ export default function Search() {
                     ))}
                 </ul>
             </div>
-        </Suspense>
     );
 }
