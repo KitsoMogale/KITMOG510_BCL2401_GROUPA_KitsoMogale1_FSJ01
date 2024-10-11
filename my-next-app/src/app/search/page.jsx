@@ -42,7 +42,7 @@ export default function Search() {
             }
 
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products?${queryParams.toString()}`);
+                const response = await fetch(`https://monumental-semifreddo-2509a8.netlify.app/api/products?${queryParams.toString()}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }

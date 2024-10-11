@@ -6,7 +6,7 @@ export default async function ProductList(props) {
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+      const res = await fetch(`https://monumental-semifreddo-2509a8.netlify.app/api/products`);
       
       // Check if the response is OK (status 200-299)
       //console.log(res)
