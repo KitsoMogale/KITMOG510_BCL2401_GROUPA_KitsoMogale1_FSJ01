@@ -5,7 +5,7 @@ import Sort from '../components/Sort';
 
 export default async function Page({params}) {
   console.log('number1')
-  const getProducts = async (id=0)=>{
+  const getProducts = async (id)=>{
       console.log(id,'get')
     let skip = 20*id;
     if(skip<10){
@@ -19,7 +19,7 @@ export default async function Page({params}) {
 
      return data
   }
-
+  
   const data = await getProducts(params.number);
   return (
     <div className="p-12">
