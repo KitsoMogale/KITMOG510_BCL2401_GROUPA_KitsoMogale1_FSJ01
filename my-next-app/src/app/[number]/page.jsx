@@ -6,7 +6,7 @@ import Sort from '../components/Sort';
 export default async function Page({params}) {
   console.log('number1')
   const getProducts = async (id=0)=>{
-      console.log('get')
+      console.log(id,'get')
     let skip = 20*id;
     if(skip<10){
         skip= `0${skip}`

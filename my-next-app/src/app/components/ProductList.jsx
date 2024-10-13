@@ -23,9 +23,9 @@ export default async function ProductList(props) {
   
      return data
   }
-
+ console.log(props.data[0])
   const products = props.data?props.data: await getProducts();
- // console.log( typeof products,'2');
+ console.log( products[0],'2');
 
   return (
     <div>

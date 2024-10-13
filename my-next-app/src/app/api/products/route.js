@@ -1,4 +1,4 @@
-import { getFirestore, collection, query, where, orderBy, startAfter, limit, getDocs, doc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, orderBy, startAfter, limit, getDocs,getDoc, doc } from 'firebase/firestore';
 import app from "../../firebaseConfig"; // Import your Firebase config
 import { NextResponse } from "next/server";
 
@@ -18,13 +18,23 @@ export async function GET(req, res) {
   try {
     const productsRef = collection(db, 'products');
     let q = query(productsRef);
-
+    
     // Apply last visible document for pagination
     if (lastVisible) {
+      console.log(typeof lastVisible);
       const lastVisibleDocRef = doc(db, 'products', lastVisible);
-      const lastVisibleSnapshot = await getDocs(lastVisibleDocRef);
-      if (!lastVisibleSnapshot.empty) {
+    
+      // Fetch the document snapshot of the last visible document
+      const lastVisibleSnapshot = await getDoc(lastVisibleDocRef); // Use getDoc instead of getDocs
+      
+      // Check if the document exists and is valid
+      if (lastVisibleSnapshot.exists()) {
+        console.log('Document snapshot found');
+        // Use the document snapshot to apply pagination with startAfter
         q = query(q, startAfter(lastVisibleSnapshot));
+        console.log('Pagination applied');
+      } else {
+        console.log('No document snapshot found for pagination');
       }
     }
 
