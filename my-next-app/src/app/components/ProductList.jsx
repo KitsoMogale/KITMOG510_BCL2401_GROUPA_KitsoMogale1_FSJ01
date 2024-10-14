@@ -7,16 +7,16 @@ export default async function ProductList(props) {
     // console.log('123456789a');
     let data;
     try {
-      const res = await fetch(`${apiUrl}/api/products`,);
+      const res = await fetch(`${apiUrl}/api/products`);
       
       // Check if the response is OK (status 200-299)
-     // console.log(res)
+      console.log(res)
       if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
       }
       
        data = await res.json();
-      console.log(data.products[0], 'Fetched data successfully');
+      console.log( 'Fetched data successfully');
   } catch (error) {
       console.error('Failed to fetch products2:', error);
   }
