@@ -43,7 +43,7 @@ export default function Search() {
             const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
             try {
-                const response = await fetch(`${apiUrl}/api/products/api/products?${queryParams.toString()}`,{cache:'no-cache'});
+                const response = await fetch(`${apiUrl}/api/products/api/products?${queryParams.toString()}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }

@@ -21,7 +21,7 @@ export default function Filter() {
           setError(null); // Reset error state
     
           try {
-            const response = await fetch(`${apiUrl}/api/categories`,{cache:"no-cache"});
+            const response = await fetch(`${apiUrl}/api/categories`);
             if (!response.ok) {
               throw new Error('Failed to fetch Categories');
             }
