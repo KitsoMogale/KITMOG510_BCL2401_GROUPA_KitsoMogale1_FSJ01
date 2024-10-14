@@ -5,7 +5,7 @@ import Sort from '../components/Sort';
 
 export default async function Page({params}) {
   console.log('number1')
-  const getProducts = async (id)=>{
+  const getProducts = async (id=0)=>{
     // if(id=0){
 
     // }

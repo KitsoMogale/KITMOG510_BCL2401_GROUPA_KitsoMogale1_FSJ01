@@ -20,8 +20,8 @@ export async function GET(req, res) {
     let q = query(productsRef);
     
     // Apply last visible document for pagination
-    if (lastVisible) {
-      console.log(typeof lastVisible);
+    if (lastVisible && lastVisible !=0) {
+     // console.log(typeof lastVisible);
       const lastVisibleDocRef = doc(db, 'products', lastVisible);
     
       // Fetch the document snapshot of the last visible document
