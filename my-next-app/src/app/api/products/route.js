@@ -8,7 +8,7 @@ const db = getFirestore(app);
 export async function GET(req, res) {
   console.log('slide1234');
   const { searchParams } = new URL(req.url);
-
+  console.log('slide2134')
   const category = searchParams.get('category'); // Get the 'category' query param
   const search = searchParams.get('search');
   const sort = searchParams.get('order');
