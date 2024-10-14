@@ -5,6 +5,7 @@ import { SearchProvider } from "./components/SearchProvider";
 import { FilterProvider, SortProvider } from "./components/FilterProvider";
 import Filter from "./components/Filter";
 import Sort from "./components/Sort";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Create Next App",
@@ -55,8 +56,9 @@ export default function RootLayout({ children }) {
         <FilterProvider>
           <SortProvider>
       <Header/>
+      <Suspense>
         {children}
-  
+      </Suspense>
       </SortProvider>
       </FilterProvider>
       </SearchProvider>
