@@ -16,7 +16,7 @@ export default async function Page({params}) {
     }
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
         
-    const res = await fetch(`/api/products/?lastVisible=0${skip}`);
+    const res = await fetch(`api/products/?lastVisible=0${skip}`);
      console.log(res)
     const data = await res.json();
     console.log(data[0],'[num')
