@@ -19,7 +19,7 @@ export default async function Page({params}) {
     const res = await fetch(`${apiUrl}/api/products/?lastVisible=0${skip}`);
      console.log(res)
     const data = await res.json();
-    console.log(data[0],'[num')
+    //console.log(data[0],'[num')
      return data
   }
   
