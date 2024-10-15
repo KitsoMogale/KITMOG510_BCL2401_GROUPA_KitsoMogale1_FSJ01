@@ -1,4 +1,6 @@
 E-Commerce Website with Next.js and Tailwind CSS
+https://tangerine-treacle-5bd5d7.netlify.app/
+
 This project is an e-commerce website built using Next.js and Tailwind CSS. It demonstrates product fetching, displaying products in a responsive grid, and navigating between product pages.
 
 Installation
