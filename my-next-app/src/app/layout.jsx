@@ -33,21 +33,11 @@ export default function RootLayout({ children }) {
         />
         <meta name="Kitso Mogale" content="BuyNext" />
 
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="BuyNext - Shop Now" />
-        <meta
-          property="og:description"
-          content="Discover the best products across categories, from beauty to electronics. Shop now at great prices."
-        />
-        <meta property="og:url" content="https://BuyNext-site.com" />
-
-        {/* Twitter */}
-        <meta property="twitter:title" content="BuyNext - Shop Now" />
-        <meta
-          property="twitter:description"
-          content="Shop the best products on our e-commerce platform. Get the latest deals now."
-        />
+        <link rel="manifest" href="./manifest.json" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <meta name="description" content="My Next.js PWA App" />
+   
       </head>
 
 

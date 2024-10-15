@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 const ReviewsComponent = ({ reviews,id,reload }) => {
   const [sortedReviews, setSortedReviews] = useState(reviews);
   const [sortType, setSortType] = useState('dateNewest'); // Default sort by newest date
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
   // Function to handle sorting
   const handleSortChange = (e) => {
@@ -27,7 +28,7 @@ const ReviewsComponent = ({ reviews,id,reload }) => {
 
   const deleteReview = async(review)=>{
     console.log(review)
-    const res = await fetch(`http://localhost:3000/api/deleteReview/${id}`, {method: 'POST', headers: {
+    const res = await fetch(`${apiUrl}/api/deleteReview/${id}`, {method: 'POST', headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },body: JSON.stringify({id,review}), });

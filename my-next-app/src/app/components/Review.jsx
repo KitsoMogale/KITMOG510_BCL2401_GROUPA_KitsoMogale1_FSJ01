@@ -5,7 +5,7 @@ function ReviewForm(props) {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(5);  // Default rating set to 5
   const [name,setName] = useState('')
-  
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
     useEffect(()=>{
         if (typeof window !== "undefined") {
             const fullname = `${localStorage.getItem('name')} ${localStorage.getItem('surname')}`
@@ -21,7 +21,7 @@ function ReviewForm(props) {
     
     console.log({ comment, rating, timePosted: currentTime,reviewerName:name, });
     
-    const res = await fetch(`http://localhost:3000/api/addReviews`, {method: 'POST', headers: {
+    const res = await fetch(`${apiUrl}/api/addReviews`, {method: 'POST', headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },body: JSON.stringify({docId,comment,rating,date:currentTime,reviewerName:name}), })

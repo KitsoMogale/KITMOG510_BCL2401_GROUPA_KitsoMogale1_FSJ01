@@ -1,0 +1,22 @@
+{
+    "name": "NextBuy",
+    "short_name": "NextBuy",
+    "description": "My awesome Progressive Web App built with Next.js",
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "/png"
+      },
+      {
+        "src": "/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "/png"
+      }
+    ]
+  }
+  
