@@ -8,14 +8,14 @@ export async function POST(req) {
   try {
     console.log('start')
     const body = await req.json(); // Parse request body
-    const { docId,comment,rating,date,reviewerName } = body; // Extract docId and the new review data
-
+    let { docId,comment,rating,date,reviewerName } = body; // Extract docId and the new review data
+    docId = docId.padStart(3,'0');
     if (!docId || !comment) {
       return NextResponse.json({ error: 'Missing document ID or review' }, { status: 400 });
     }
 
     // Get a reference to the document
-    const docRef = doc(db, 'products', `00${docId}`);
+    const docRef = doc(db, 'products', docId);
 
     // Update the 'reviews' field by adding the new review to the existing array
     await updateDoc(docRef, {

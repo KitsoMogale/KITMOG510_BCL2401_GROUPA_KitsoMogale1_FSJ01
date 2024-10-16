@@ -34,7 +34,7 @@ import ReviewForm from "@/app/components/Review";
   if (!product) return <div>Loading...</div>;
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-8">
       
             <div className="mt-6">
         <Link href="/">

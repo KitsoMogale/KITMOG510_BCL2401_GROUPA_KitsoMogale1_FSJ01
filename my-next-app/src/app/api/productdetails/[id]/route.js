@@ -6,11 +6,12 @@ const db = getFirestore(app);
 
 export async function GET(req, { params }) {
   let id = params.id;
+  id = id.padStart(3,'0');
   console.log(id, 'id');
 
   try {
     // Correctly referencing the document by 'products' collection and id
-    const docRef = doc(db, 'products', `00${id}`); // Firestore ids are strings
+    const docRef = doc(db, 'products', id); // Firestore ids are strings
 
     // Fetching the document using getDoc (not getDocs)
     const productSnap = await getDoc(docRef);

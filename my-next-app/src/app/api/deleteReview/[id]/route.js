@@ -8,15 +8,16 @@ export async function POST(req) {
   console.log('1234567uhb cdr')
   try {
     const body = await req.json(); // Parse request body
-    const { id, review } = body; // Extract id and the review to delete
+    let { id, review } = body; // Extract id and the review to delete
     //  const id = params.id;
+    id = id.padStart(3,'0');
      console.log(id,review)
     if (!id|| !review ) {
       return NextResponse.json({ error: 'Missing document ID or review to delete' }, { status: 400 });
     }
 
     // Get a reference to the document
-    const docRef = doc(db, 'products', `00${id}`);
+    const docRef = doc(db, 'products', id);
     console.log('12345678')
     // Update the 'reviews' field by removing the specified review from the array
     await updateDoc(docRef, {
@@ -29,5 +30,6 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Failed to delete review' }, { status: 500 });
   }
 }
+
 
 
