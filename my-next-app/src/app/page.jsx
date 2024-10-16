@@ -11,7 +11,7 @@ function Home() {
       <Filter/>
       <Sort className='m-2'/>
       </div>
-      <ProductList number={zero} />
+      {/* <ProductList number={zero} /> */}
     </div>
   );
 }

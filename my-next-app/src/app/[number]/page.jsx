@@ -30,7 +30,7 @@ export default async function Page({params}) {
       <Filter/>
       <Sort className='m-2'/>
       </div>
-    <ProductList data={data} number={params.number}/>
+    {/* <ProductList data={data} number={params.number}/> */}
     </div>
   )
 }
