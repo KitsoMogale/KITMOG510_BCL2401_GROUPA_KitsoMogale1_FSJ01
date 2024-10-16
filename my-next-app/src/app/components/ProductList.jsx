@@ -25,12 +25,12 @@ export default async function ProductList(props) {
   }
   
   const products = props.data?props.data: await getProducts();
- console.log( products.products[0],'2');
+ console.log( products[0],'2');
 
   return (
     <div>
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.products.map((product) => (
+        {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ul>
