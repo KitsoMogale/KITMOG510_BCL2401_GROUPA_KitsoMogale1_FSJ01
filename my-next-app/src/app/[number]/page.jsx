@@ -23,7 +23,7 @@ export default async function Page({params}) {
      return data
   }
 
- // const data = await getProducts(params.number);
+  const data = await getProducts(params.number);
   return (
     <div className="p-12">
       <div className="flex">
