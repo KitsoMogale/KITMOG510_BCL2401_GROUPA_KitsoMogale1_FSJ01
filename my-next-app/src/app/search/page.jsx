@@ -56,7 +56,7 @@ export default function Search() {
             }
         };
 
-        fetchProducts();
+       // fetchProducts();
     }, [search, filter, sort]); // Fetch products when search, filter, or sort change
 
     if (loading) return <p>Loading...</p>;

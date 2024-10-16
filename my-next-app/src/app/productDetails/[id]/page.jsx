@@ -27,7 +27,7 @@ import ReviewForm from "@/app/components/Review";
       }
     }
 
-    fetchProducts();
+    // fetchProducts();
   }, [refetch]);
 
 
