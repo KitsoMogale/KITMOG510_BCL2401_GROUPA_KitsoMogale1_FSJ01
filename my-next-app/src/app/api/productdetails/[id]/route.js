@@ -24,11 +24,15 @@ export async function GET(req, { params }) {
       return NextResponse.json(product, {
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
       });
     } else {
       // If no document is found
-      return NextResponse.json({ message: "Product not found" }, { status: 404 });
+      return NextResponse.json({ message: "Product not found" }, { status: 404,        headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }, });
     }
   } catch (e) {
     console.log("Failed to load product", e);
@@ -38,6 +42,7 @@ export async function GET(req, { params }) {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
       }
     );

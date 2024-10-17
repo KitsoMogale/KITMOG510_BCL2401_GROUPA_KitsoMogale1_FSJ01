@@ -71,6 +71,7 @@ export async function GET(req, res) {
     return NextResponse.json(products, {
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     });
   } catch (e) {
@@ -81,6 +82,7 @@ export async function GET(req, res) {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
         },
       }
     );
