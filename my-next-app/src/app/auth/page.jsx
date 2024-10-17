@@ -36,6 +36,7 @@ export default function Auth() {
         console.log('User signed in');
         if (typeof window !== "undefined") {
           localStorage.setItem('isLoggedIn',true);
+          login();
           alert('Successfully loggedIn')
          route.back()
         }
