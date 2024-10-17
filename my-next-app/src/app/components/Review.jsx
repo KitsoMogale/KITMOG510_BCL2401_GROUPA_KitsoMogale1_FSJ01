@@ -20,14 +20,20 @@ function ReviewForm(props) {
 
     
     console.log({ comment, rating, timePosted: currentTime,reviewerName:name, });
-    
+    try{
     const res = await fetch(`${apiUrl}/api/addReviews`, {method: 'POST', headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },body: JSON.stringify({docId,comment,rating,date:currentTime,reviewerName:name}), })
     // console.log(res);
     const data = await res.json();
+    alert("Review added successfully")
     props.reload();
+  }
+  catch(e){
+    console.log(e)
+    alert("failed to add review,try again.")
+  }
     // Handle form submission (e.g., send review data to the server)
   };
 

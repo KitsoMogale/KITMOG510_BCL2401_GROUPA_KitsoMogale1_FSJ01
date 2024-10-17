@@ -6,6 +6,7 @@ import { FilterProvider, SortProvider } from "./components/FilterProvider";
 import Filter from "./components/Filter";
 import Sort from "./components/Sort";
 import { Suspense } from "react";
+import { AuthProvider } from "./Authcontext";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <AuthProvider>
        <SearchProvider>
         <FilterProvider>
           <SortProvider>
@@ -27,6 +29,7 @@ export default function RootLayout({ children }) {
       </SortProvider>
       </FilterProvider>
       </SearchProvider>
+      </AuthProvider>
       </body>
     </html>
   );

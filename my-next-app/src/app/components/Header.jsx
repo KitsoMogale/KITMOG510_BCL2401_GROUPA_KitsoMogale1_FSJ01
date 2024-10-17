@@ -1,8 +1,12 @@
+'use client'
 import React from 'react';
 import Link from 'next/link';
 import {SearchBar} from './SearchBar'
+import { useAuth } from '../Authcontext';
 
 export default function Header() {
+  const { user} = useAuth();
+  console.log(user)
   return (
     <header className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -29,7 +33,8 @@ export default function Header() {
         {/* Search Bar */}
       <SearchBar/>
 
-        <Link href='/logout' className='text-red-400'>Logout</Link>
+       {user== 'true'? <Link href='/logout' className='text-red-400'>logout</Link>:
+        <Link href='/auth' className='text-green-400'>Login</Link>}
       </div>
 
       {/* Mobile Navigation Menu */}

@@ -28,6 +28,7 @@ const ReviewsComponent = ({ reviews,id,reload }) => {
 
   const deleteReview = async(review)=>{
     console.log(review)
+    try{
     const res = await fetch(`${apiUrl}/api/deleteReview/${id}`, {method: 'POST', headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -35,8 +36,14 @@ const ReviewsComponent = ({ reviews,id,reload }) => {
     console.log(res);
     const data = res.json();
     console.log(data);
+    alert("Review deleted successfully")
     reload();
-
+  }
+  catch(e){
+    console.log(e);
+    alert("Failed to delete review , try again")
+  }
+    
   }
 
   useEffect(()=>{

@@ -3,14 +3,20 @@ import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import app from '../firebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '../Authcontext';
+import { redirect, useRouter } from 'next/navigation'; // Optional, for redirecting
+
+
 
 const auth = getAuth(app);
 export default function Auth() {
+  const { user,login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false); // Toggle between Sign In and Sign Up
   const [name,setName] = useState('');
   const [surname,setSurname] = useState('')
+  const route = useRouter();
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -20,14 +26,18 @@ export default function Auth() {
         // Sign Up
         await createUserWithEmailAndPassword(auth, email, password);
         console.log('User signed up');
-
+        localStorage.setItem('name',name);
+        localStorage.setItem('surname',surname);
+        setIsSignUp(!isSignUp)
+        handleAuth()
       } else {
         // Sign In
         await signInWithEmailAndPassword(auth, email, password);
         console.log('User signed in');
         if (typeof window !== "undefined") {
-          localStorage.setItem('name',name);
-          localStorage.setItem('surname',surname)
+          localStorage.setItem('isLoggedIn',true);
+          alert('Successfully loggedIn')
+         route.back()
         }
 
       }
@@ -43,22 +53,22 @@ export default function Auth() {
         {isSignUp ? <p className='bg-blue-600 w-fit rounded p-2 text-white'>Sign Up</p>  : <p className='bg-green-600 w-fit rounded p-2 text-white'>Sign In</p>}
       </h1>
       <form onSubmit={handleAuth} className="space-y-4">
-        <input
+     {isSignUp?<input
           type="name"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <input
+        />:null}   
+       {isSignUp? <input
           type="surname"
           placeholder="surname"
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
           required
           className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+        />:null} 
         <input
           type="email"
           placeholder="Email"

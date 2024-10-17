@@ -12,9 +12,11 @@ export async function GET(req, res) {
   const category = searchParams.get('category'); // Get the 'category' query param
   const search = searchParams.get('search');
   const sort = searchParams.get('order');
-  const lastVisible = searchParams.get('lastVisible');
+  let lastVisible = searchParams.get('lastVisible');
   console.log(lastVisible, 'lastVisible');
-
+  if(lastVisible){
+  lastVisible = lastVisible.padStart(3,'0');
+  }
   try {
     const productsRef = collection(db, 'products');
     let q = query(productsRef);
@@ -64,7 +66,7 @@ export async function GET(req, res) {
       id: doc.id,
       ...doc.data(),
     }));
-    console.log(products[0],'slide123');
+  //  console.log(products[0],'slide123');
 
     return NextResponse.json(products);
   } catch (e) {
