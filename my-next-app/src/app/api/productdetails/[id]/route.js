@@ -21,14 +21,26 @@ export async function GET(req, { params }) {
       // If the document exists, prepare the product data
       const product = { id: productSnap.id, ...productSnap.data() };
       // console.log(product,'1234567890poiuyvvcdsw')
-      return NextResponse.json(product);
+      return NextResponse.json(product, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
     } else {
       // If no document is found
       return NextResponse.json({ message: "Product not found" }, { status: 404 });
     }
   } catch (e) {
     console.log("Failed to load product", e);
-    return NextResponse.json({ message: "Failed to load product" }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Error fetching product' },
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 }
 
