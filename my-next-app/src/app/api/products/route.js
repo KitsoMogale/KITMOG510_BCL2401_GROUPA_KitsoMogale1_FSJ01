@@ -68,10 +68,22 @@ export async function GET(req, res) {
     }));
   console.log(products[0],'slide123');
 
-    return NextResponse.json({products});
+    return NextResponse.json(products, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   } catch (e) {
     console.error('Failed to load products1', e);
-    return NextResponse.json({ error: 'Error fetching products' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Error fetching products' },
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   }
 }
 
