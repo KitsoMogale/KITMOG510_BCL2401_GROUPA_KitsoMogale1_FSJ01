@@ -66,7 +66,7 @@ export async function GET(req, res) {
       id: doc.id,
       ...doc.data(),
     }));
-  //  console.log(products[0],'slide123');
+  console.log(products[0],'slide123');
 
     return NextResponse.json(products);
   } catch (e) {
