@@ -7,7 +7,6 @@ import { useAuth } from '../Authcontext';
 import { redirect, useRouter } from 'next/navigation'; // Optional, for redirecting
 
 
-
 const auth = getAuth(app);
 export default function Auth() {
   const { user,login} = useAuth();
